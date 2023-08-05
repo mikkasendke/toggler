@@ -1,6 +1,7 @@
 use winsafe::{prelude::*, Sleep};
 use winsafe::{co::MB, co::WS, co::WS_EX};
 use winsafe::HWND;
+use rdev::listen;
 
 fn main() {
     println!("Hello, world!");
@@ -8,7 +9,24 @@ fn main() {
     let mut last_focused: HWND = winsafe::HWND::NULL;
     let mut subject: HWND = winsafe::HWND::NULL;
 
-
+    fn callback(event: rdev::Event) {
+        match event.event_type {
+            rdev::EventType::KeyPress(key) => match key {
+                rdev::Key::KeyH => {
+                    println!("key: {:?}", key);
+                },
+                rdev::Key::KeyJ => {
+                    println!("key: {:?}", key);
+                },
+                _ => {}
+            },
+            _ => {}
+        }
+    }
+    match listen(callback) {
+        Ok(_) => println!("listen ok"),
+        Err(_) => println!("listen error"),
+    }
     // Set subject on keypress
     //
     // Check if hotkey is pressed

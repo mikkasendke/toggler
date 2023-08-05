@@ -7,4 +7,5 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.72"
+rdev = "0.5.3"
 winsafe = { version = "0.0.17", features = ["dwm"] }
